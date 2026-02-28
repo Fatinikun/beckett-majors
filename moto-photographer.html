@@ -339,7 +339,6 @@
         .features-list {
             list-style: none;
             margin: 2rem 0 3rem;
-            padding: 0;
         }
 
         .features-list li {
@@ -348,17 +347,16 @@
             letter-spacing: 0.05em;
             padding: 1rem 0;
             border-bottom: 1px solid rgba(232,213,196,0.2);
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
+            position: relative;
+            padding-left: 2rem;
         }
 
         .features-list li::before {
             content: '→';
+            position: absolute;
+            left: 0;
             color: var(--engine-red);
-            font-size: 1.4rem;
-            line-height: 1;
-            flex-shrink: 0;
+            font-size: 1.8rem;
         }
 
         .about-image {
@@ -610,23 +608,12 @@
             }
 
             .features-list li {
-                font-size: 1.1rem;
-                gap: 0.75rem;
-            }
-
-            .features-list li::before {
-                font-size: 1.1rem;
-                margin-top: 3px;
+                font-size: 1.2rem;
+                padding: 0.8rem 0;
             }
 
             .scroll-indicator {
                 bottom: 2rem;
-            }
-
-            .beckvisualz-watermark {
-                top: 1.5rem;
-                right: 1.5rem;
-                font-size: 1rem;
             }
         }
 
@@ -668,6 +655,9 @@
 <body>
     <!-- Hero Section -->
     <section class="hero">
+
+        <!-- Beckvisualz Watermark -->
+        <div class="beckvisualz-watermark">beckvisualz</div>
 
         <img src="images/hero.jpg" alt="Motocross rider mid-jump" class="hero-bg">
         <div class="hero-content">
@@ -831,9 +821,3 @@
         document.querySelectorAll('.gallery-item').forEach((item, index) => {
             item.style.opacity = '0';
             item.style.transform = 'translateY(30px)';
-            item.style.transition = `all 0.6s ease ${index * 0.1}s`;
-            observer.observe(item);
-        });
-    </script>
-</body>
-</html>
