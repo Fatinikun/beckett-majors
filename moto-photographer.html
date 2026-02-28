@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beckvisualz | Action Shots for Riders</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Antonio:wght@700&family=Darker+Grotesque:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --desert-sand: #E8D5C4;
+            --dust-orange: #D97757;
+            --engine-red: #C41E3A;
+            --deep-black: #0A0A0A;
+            --steel-gray: #2C2C2C;
+            --dirt-brown: #8B6F47;
+            --highlight-white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Darker Grotesque', sans-serif;
+            background: var(--deep-black);
+            color: var(--highlight-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(10,10,10,0.7) 0%, rgba(196,30,58,0.3) 100%);
+            z-index: 2;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.8) contrast(1.1);
+            animation: zoomSlow 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes zoomSlow {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 1200px;
+            padding: 0 2rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Antonio', sans-serif;
+            font-size: clamp(3.5rem, 12vw, 9rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            text-shadow: 4px 4px 20px rgba(0,0,0,0.8);
+            animation: fadeInUp 1.2s ease-out 0.2s both;
+        }
+
+        .hero h1 .highlight {
+            display: block;
+            color: var(--engine-red);
+            font-style: italic;
+            animation: fadeInUp 1.2s ease-out 0.4s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            color: var(--desert-sand);
+            animation: fadeInUp 1.2s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--engine-red);
+            color: var(--highlight-white);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: 3px solid var(--engine-red);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1.2s ease-out 0.8s both;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--highlight-white);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            color: var(--engine-red);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(196,30,58,0.4);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, 15px); }
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            display: block;
+            width: 2px;
+            height: 40px;
+            background: var(--desert-sand);
+            margin: 0 auto 10px;
+        }
+
+        .scroll-text {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--desert-sand);
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(180deg, var(--deep-black) 0%, var(--steel-gray) 100%);
+            position: relative;
+        }
+
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--engine-red), transparent);
+        }
+
+        .section-title {
+            font-family: 'Antonio', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 4px;
+            background: var(--engine-red);
+            margin: 1.5rem auto 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: var(--steel-gray);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--engine-red);
+            transform: translateY(-8px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            filter: grayscale(0.3);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(10,10,10,0.95), transparent);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 0.05em;
+            color: var(--desert-sand);
+        }
+
+        /* For Riders Section */
+        .for-riders {
+            padding: 8rem 2rem;
+            background: var(--deep-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .for-riders::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(196,30,58,0.15), transparent 70%);
+            pointer-events: none;
+        }
+
+        .for-riders-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .for-riders-text h2 {
+            font-family: 'Antonio', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        .for-riders-text h2 span {
+            color: var(--engine-red);
+            display: block;
+        }
+
+        .for-riders-text p {
+            font-size: 1.3rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--desert-sand);
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 2rem 0 3rem;
+        }
+
+        .features-list li {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.05em;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(232,213,196,0.2);
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .features-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--engine-red);
+            font-size: 1.8rem;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .image-placeholder {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            border: 3px solid var(--engine-red);
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.2) contrast(1.1);
+        }
+
+        .about-text {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: rgba(196,30,58,0.1);
+            border-left: 4px solid var(--engine-red);
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--desert-sand);
+            line-height: 1.6;
+        }
+
+        /* Booking CTA Section */
+        .booking-cta {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--engine-red) 0%, var(--dirt-brown) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 10px,
+                    rgba(0,0,0,0.05) 10px,
+                    rgba(0,0,0,0.05) 20px
+                );
+            pointer-events: none;
+        }
+
+        .booking-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .booking-cta h2 {
+            font-family: 'Antonio', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            line-height: 0.9;
+        }
+
+        .booking-cta p {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .cta-button-secondary {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--highlight-white);
+            color: var(--engine-red);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: 3px solid var(--highlight-white);
+            transition: all 0.3s ease;
+            margin: 0 1rem;
+        }
+
+        .cta-button-secondary:hover {
+            background: transparent;
+            color: var(--highlight-white);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .cta-button-outline {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: transparent;
+            color: var(--highlight-white);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: 3px solid var(--highlight-white);
+            transition: all 0.3s ease;
+            margin: 0 1rem;
+        }
+
+        .cta-button-outline:hover {
+            background: var(--highlight-white);
+            color: var(--engine-red);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 2rem 2rem;
+            background: var(--deep-black);
+            border-top: 1px solid var(--steel-gray);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.1em;
+            color: var(--engine-red);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .footer-section p {
+            font-size: 1rem;
+            color: var(--desert-sand);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--desert-sand);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--engine-red);
+        }
+
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .social-links a {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(232,213,196,0.2);
+        }
+
+        .footer-bottom p {
+            font-size: 0.9rem;
+            color: var(--desert-sand);
+            letter-spacing: 0.1em;
+        }
+
+        
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .for-riders-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .cta-button-secondary,
+            .cta-button-outline {
+                display: block;
+                margin: 1rem auto;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .social-links {
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+            }
+
+            .booking-cta h2 {
+                font-size: clamp(2rem, 8vw, 3.5rem);
+            }
+
+            .for-riders-text h2 {
+                font-size: clamp(2rem, 8vw, 3rem);
+            }
+
+            .features-list {
+                margin: 1.5rem 0 2rem;
+            }
+
+            .features-list li {
+                font-size: 1.2rem;
+                padding: 0.8rem 0;
+            }
+
+            .scroll-indicator {
+                bottom: 2rem;
+            }
+
+            .beckvisualz-watermark {
+                top: 1.5rem;
+                right: 1.5rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 100svh; /* Use small viewport height for mobile */
+            }
+
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+            }
+
+            .gallery-section,
+            .for-riders,
+            .booking-cta {
+                padding: 4rem 1.5rem;
+            }
+
+            .booking-cta p {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Noise texture overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <img src="images/hero.jpg" alt="Motocross rider mid-jump" class="hero-bg">
+        <div class="hero-content">
+            <h1>
+                YOUR MOMENT
+                <span class="highlight">IN FLIGHT</span>
+            </h1>
+            <p class="hero-subtitle">Moto Photography for Riders</p>
+            <a href="#booking" class="cta-button">Book Your Shoot</a>
+        </div>
+        <div class="scroll-indicator">
+            <span class="scroll-text">Scroll</span>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <h2 class="section-title">Portfolio</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="images/img3.jpg" alt="Desert jump">
+                <div class="gallery-overlay">
+                    <h3>Desert Sessions</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/img1.jpg" alt="Track action">
+                <div class="gallery-overlay">
+                    <h3>Track Days</h3>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="images/img2.jpg" alt="Rider portrait">
+                <div class="gallery-overlay">
+                    <h3>Rider Portraits</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Riders Section -->
+    <section class="for-riders">
+        <div class="for-riders-content">
+            <div class="for-riders-text">
+                <h2>
+                    FOR <span>RIDERS</span>
+                </h2>
+                <p>Every jump, every turn, every moment of controlled chaos deserves to be captured with the same intensity you bring to the track.</p>
+                <p>I specialize in freezing those split-second moments where metal, dirt, and determination collide.</p>
+                
+                <ul class="features-list">
+                    <li>Authentic action shots that tell your story</li>
+                    <li>Track day and practice session coverage</li>
+                    <li>Fast turnaround on edited photos</li>
+                    <li>High-resolution digital files</li>
+                </ul>
+
+                <a href="#booking" class="cta-button">Get In Touch</a>
+            </div>
+            
+            <div class="about-image">
+                <div class="image-placeholder">
+                    <img src="images/img2.jpg" alt="Rider action shot">
+                </div>
+                <div class="about-text">
+                    <p>"Every rider deserves to see themselves the way I see them—fearless, focused, and fully alive."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking CTA -->
+    <section id="booking" class="booking-cta">
+        <div class="booking-content text-center">
+            <h2>LET'S WORK TOGETHER</h2>
+            <p>Got a track day coming up? Want to build your riding portfolio? Let's connect.</p>
+    
+            <a href="#book"
+               class="inline-block px-6 py-2 bg-[var(--highlight-white)] text-[var(--engine-red)]
+                      font-['Bebas_Neue'] text-lg tracking-[0.1em] uppercase
+                      border-2 border-[var(--highlight-white)]
+                      transition-all duration-300 ease-in-out
+                      mx-4
+                      hover:bg-transparent hover:text-[var(--highlight-white)]
+                      hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.3)]">
+                Book Now
+            </a>
+    
+            <a href="#contact"
+               class="inline-block px-6 py-2 bg-transparent text-[var(--highlight-white)]
+                      font-['Bebas_Neue'] text-lg tracking-[0.1em] uppercase
+                      border-2 border-[var(--highlight-white)]
+                      transition-all duration-300 ease-in-out
+                      mx-4
+                      hover:bg-[var(--highlight-white)] hover:text-[var(--engine-red)]
+                      hover:-translate-y-1">
+                View Packages
+            </a>
+        </div>
+    </section>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><a href="mailto:your.email@example.com">your.email@example.com</a></p>
+                <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow</h3>
+                <div class="social-links">
+                    <a href="https://instagram.com/yourhandle" target="_blank">Instagram</a>
+                    <a href="https://facebook.com/yourpage" target="_blank">Facebook</a>
+                    <a href="https://twitter.com/yourhandle" target="_blank">Twitter</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Location</h3>
+                <p>Based in [Your City]</p>
+                <p>Available for travel</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Beckvisualz. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe gallery items
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)
